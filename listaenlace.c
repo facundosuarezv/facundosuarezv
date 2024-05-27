@@ -2,41 +2,37 @@
 #include <stdlib.h>
 
 typedef struct node{
-    int number;
+    int x;
     struct node *next;
 } node;
 
-int main (int argc, char *argv[]) {
+void insert_end(node **root, int value){
+    node *new_node = malloc(sizeof(node));
+    if (new_node == NULL){
+        exit(1);
+    }
+    new_node->next = NULL;
+    new_node->x= value;
 
-    node *list = NULL;
+    node *curr = *root;
+    while(curr->next != NULL){
+        curr = curr->next; 
+    }
+    curr->next = new_node;
 
-    for (int i = 1; i < argc; i++){
-        int number = atoi(argv[i]);
+}
 
-        node *n = malloc(sizeof(node));
-        if (n== NULL){
-            //Free memory
-            return 1;
-        }
-        n->number = number;
-        n->next=list;
-        list = n;
+int main () {
 
+    node *root= malloc(sizeof(node));
+    if (root ==NULL){
+        exit(2);
+    }
+    root->x = 15;
+    root->next = NULL;
+
+    for (node *curr = root;curr!= NULL; curr= curr->next){
+        printf("%d\n", curr->x);
 
     }
-
-    node *current = list;
-    
-    while (current != NULL){
-        printf("%d \n", current->number);
-        current = current->next;
-    }
-        current = list;
-    while (current != NULL) {
-        node *next = current->next;
-        free(current);
-        current = next;
-    }
-
-    return 0;
 }

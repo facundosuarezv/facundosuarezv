@@ -20,9 +20,7 @@ int main () {
     u = a % 10;
 
     printf("digito:%d \n nuevonumero:%d \n", u, a);
-    do
-    {
-        /* code */
-    } while (/* condition */);
+
+
     
 }

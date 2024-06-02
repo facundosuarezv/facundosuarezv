@@ -15,7 +15,8 @@
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "detail": "Generated task by gcc"
+            "detail": "Compilación de archivos C con GCC"
         }
     ]
 }
+

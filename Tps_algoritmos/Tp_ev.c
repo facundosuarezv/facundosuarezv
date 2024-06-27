@@ -1,66 +1,121 @@
 #include <stdio.h>
+#define vuelos 2
 
-#define vuelos 5
+//Declaracion de variables a utilizar
+int capacidadBodega, solicitudes20kg, solicitudes32kg;
+float porcentake32kg, promedioValijasPorVuelo;
+int aeropuerto;
 
-// Declaramos las variables a utilizar
-int total_valijas, total_valijas20kg, total_valijas32kg, total_valijasxvuelo; 
-int valijas20kgA1, valijas20kgA2, valijas20kgA3, valijas20kgA4;
-int valijas32kgA1, valijas32kgA2, valijas32kgA3, valijas32kgA4;
-int hay_valijas, peso_valija, numero_vuelo, numero_aeropuerto, maxvalijasrechazadas,valijas_rechazadas, capacidadbodega;
-int overcapacityA1 ,overcapacityA2, overcapacityA3, overcapacityA4;
-float porcentaje_valijas32kg, promedio_valijas;
+//Inicializo variables
+int totalSolicitudes = 0;
+int totalValijas20kg = 0;
+int maxValijasRechazadas = 0;
+int valijasRechazadas = 0;
+int aeropuertoexcedido1 = 0;
+int aeropuertoexcedido2 = 0;
+int aeropuertoexcedido3 = 0;
+int aeropuertoexcedido4 = 0;
 
-//Inicializamos variables
-total_valijas = 0;
-maxvalijasrechazadas = 0; 
 
-//contador para valijas 20kg x aeropuerto
-valijas20kgA1 = 0;
-valijas20kgA2 = 0;
-valijas20kgA3 = 0;
-valijas20kgA4 = 0;
+int main(){
+    //Bucle for para repetir la secuencia de ingreso para todos los vuelos
+    for (int numero_vuelo = 1; numero_vuelo <= vuelos; numero_vuelo++){
 
-//contador para valijas 32kg x aeropuerto
-valijas32kgA1 = 0;
-valijas32kgA2 = 0;
-valijas32kgA3 = 0;
-valijas32kgA4 = 0;
+        //Inicializo contadores para cada iteracion
+        int totalSolicitudesPorVuelo = 0;
+        int pesoValija;
+        int hay_valijas = 1;
+        solicitudes20kg = 0;
+        solicitudes32kg = 0;
 
-overcapacityA1 = 0;
-overcapacityA2 = 0;
-overcapacityA3 = 0;
-overcapacityA4 = 0;
+        //Ingreso capacidad de bodega del vuelo
+        printf("Ingrese la capacidad de bodega del vuelo %d: \n", numero_vuelo);
+        scanf("%d", &capacidadBodega);
 
-int main (){
-    
-    for (numero_vuelo = 1; numero_vuelo <= vuelos; numero_vuelo++){
-        total_valijasxvuelo = 0;
-        total_valijas20kg = 0;
-        total_valijas32kg = 0;
-        valijas_rechazadas = 0;
+        //Ingreso el numero de aeropuerto
+        printf("Ingrese el numero del aeropuerto (1 a 4) del vuelo %d: \n", numero_vuelo);
+        scanf("%d", &aeropuerto);
 
-        printf("Ingrese la capacaidad de bodega del vuelo: \n");
-        scanf("%d", &capacidadbodega);
-        printf("Ingrese el numero de aeropuerto (1 a 4) del vuelo: \n")
-        scanf("%d", &numero_aeropuerto);
-
-        while (numero_aeropuerto <1 || numero_aeropuerto >4){
-            printf("Numero de aeropuerto inválido. Por favor ingrese un número entre 1 y 4 \n");
-            scanf("%d", &numero_aeropuerto);
-        }
-        
-        //Ingreso las valijas
-        hay_valijas= 1;
-        while (hay_valijas = 1){
-            printf("Ingrese el peso de la valija (20 o 32 kg) para terminar \n");
-            scanf("%d", &peso_valija);
-            printf("Hay mas valijas para despachar? (1 para si 0 para no)\n");
-            scanf("%d", &hay_valijas);
+        while (aeropuerto < 1 || aeropuerto > 4){
+            printf("Numero invalido, ingreselo nuevamente: \n");
+            scanf("%d", &aeropuerto);
         }
 
-        if (peso_valija = 20){
+        //Comienzo a leer las solicitudes de valijas
+        while(hay_valijas == 1){
+            printf("Ingrese el peso de la valija (20kg o 32kg) o (0) para terminar el ingreso: \n");
+            scanf("%d", &pesoValija);
+            if (pesoValija == 0){
+                hay_valijas = 0;
+            }else{
+
+                if (pesoValija == 20){
+                    solicitudes20kg++;
+                    totalValijas20kg++;
+                }else{
+                    solicitudes32kg++;
+                }
+                totalSolicitudesPorVuelo++; //Contador solicitudes por vuelo
+                totalSolicitudes++; //Contador solicitudes TOTALES
+            }
+        }
+        //Calculo de valijas rechazadas
+        if (totalSolicitudesPorVuelo > capacidadBodega){
+            valijasRechazadas = totalSolicitudesPorVuelo - capacidadBodega;
+            if (valijasRechazadas > maxValijasRechazadas){
+                maxValijasRechazadas = valijasRechazadas;
+            } 
             
+            //Registrar aeropuerto excedido de capacidad
+            switch (aeropuerto){
+            case 1:
+                aeropuertoexcedido1 = 1;
+                break;
+            case 2 :
+                aeropuertoexcedido2 = 1;                
+                break;
+            case 3:
+                aeropuertoexcedido3 = 1;
+                break;
+            case 4:
+                aeropuertoexcedido4 = 1;
+                break;
+            
+            default:
+                break;
+            }
         }
-        
+
+        //Calculo porcentaje de solicitudes de 32kg
+        if (totalSolicitudesPorVuelo > 0){
+            porcentake32kg = (solicitudes32kg * 100)/totalSolicitudesPorVuelo;
+        }else{porcentake32kg = 0;} 
+
+        //Imprimo el orden de vuelo y el porcentaje de solicitudes de 32kg (punto 2)
+        printf("Orden de vuelo: %d \n", numero_vuelo);
+        printf("Porcentaje de solicitudes de valijas de 32kg para el vuelo %d es de: %.2f%% \n---------------\n", numero_vuelo, porcentake32kg);       
     }
+
+    //Calculo de promedio de valijas por vuelo
+    promedioValijasPorVuelo = totalSolicitudes / vuelos;
+
+    //Impresiones finales
+    //Punto 1
+    printf("Aeropuertos con vuelos que excedieron la capacidad de bodega: \n");
+
+    if(aeropuertoexcedido1 == 1){
+        printf("Aeropuerto 1 \n");
+    }
+    if(aeropuertoexcedido2 == 1){
+        printf("Aeropuerto 2 \n");
+    }
+    if(aeropuertoexcedido3 == 1){
+        printf("Aeropuerto 3 \n");
+    }
+    if(aeropuertoexcedido4 == 1){
+        printf("Aeropuerto 4 \n");
+    }
+    printf("Maxima cantidad de valijas rechazadas en un vuelo: %d \n", maxValijasRechazadas); //Punto 3
+    printf("Total de solicitudes de valijas de 20kg: %d \n", totalValijas20kg); //Punto 4
+    printf("Promedio de valijas solicitadas por vuelo: %.2f \n", promedioValijasPorVuelo); //Punto 5
 }

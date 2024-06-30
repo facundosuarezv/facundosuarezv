@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define VUELOS 2
+#define VUELOS 120
 
 // Declaración de variables globales
 int totalSolicitudes = 0;
@@ -14,7 +14,7 @@ void leerCapacidadYAeropuerto(int *capacidadBodega, int *aeropuerto, int numeroV
 void leerSolicitudes(int *solicitudes20kg, int *solicitudes32kg, int *totalSolicitudesPorVuelo);
 // Función para calcular valijas rechazadas
 void calcularValijasRechazadas(int capacidadBodega, int totalSolicitudesPorVuelo, int aeropuerto);
-// Función para calcular porcentaje de valijas de 32kg
+// Función para calcular porcentaje
 float calculoPorcentaje(int cantidad_parcial, int cantidad_total);
 // Función para reportar resultados por vuelo
 void reportarPorVuelo(int numeroVuelo, float porcentaje32kg);

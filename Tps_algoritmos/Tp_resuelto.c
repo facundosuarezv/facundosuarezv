@@ -85,13 +85,14 @@ void leerSolicitudes(int *solicitudes20kg, int *solicitudes32kg, int *totalSolic
 void calcularValijasRechazadas(int capacidadBodega, int totalSolicitudesPorVuelo, int aeropuerto) {
     int valijasRechazadas = 0;
 
+    //Evaluo si hay o no valijas rechazadas
     if (totalSolicitudesPorVuelo > capacidadBodega) {
         valijasRechazadas = totalSolicitudesPorVuelo - capacidadBodega;
         if (valijasRechazadas > maxValijasRechazadas) {
             maxValijasRechazadas = valijasRechazadas;
         }
 
-        // Registrar aeropuerto excedido de capacidad
+        // En caso de que haya valijas rechazadas, registra el aeropuerto excedido de capacidad
         switch (aeropuerto) {
             case 1:
                 aeropuertoExcedido1 = 1;

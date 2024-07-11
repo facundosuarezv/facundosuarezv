@@ -18,21 +18,4 @@ void insert_end(node **root, int value){
     while(curr->next != NULL){
         curr = curr->next; 
     }
-    curr->next = new_node;
-
-}
-
-int main () {
-
-    node *root= malloc(sizeof(node));
-    if (root ==NULL){
-        exit(2);
-    }
-    root->x = 15;
-    root->next = NULL;
-
-    for (node *curr = root;curr!= NULL; curr= curr->next){
-        printf("%d\n", curr->x);
-
-    }
-}
+    curr->nNULL

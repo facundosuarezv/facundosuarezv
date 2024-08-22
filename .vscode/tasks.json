@@ -4,8 +4,9 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "gcc",
+            "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
             "args": [
+                "-g",
                 "${file}",
                 "-o",
                 "${workspaceFolder}/bin/${fileBasenameNoExtension}.exe"
@@ -14,9 +15,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "detail": "Compilación de archivos C con GCC"
         }
     ]
 }
-

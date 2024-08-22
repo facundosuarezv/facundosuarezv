@@ -32,5 +32,5 @@ void define_biggest(int cantidad){
         }  
     }
     printf("biggest = %d \n",biggest);
-
+    
 }

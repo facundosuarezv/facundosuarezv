@@ -28,9 +28,10 @@ void define_biggest(int cantidad){
         scanf("%d", &numbers[i]);
 
         if (biggest< numbers[i]){
+
             biggest = numbers[i];
         }  
     }
     printf("biggest = %d \n",biggest);
-        
+    
 }

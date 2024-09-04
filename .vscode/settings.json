@@ -1,10 +1,5 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
-    
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
     "[c]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
@@ -110,4 +105,5 @@
         "pom.xml": "cd $dir && mvn clean package"
     }
       
+
 }

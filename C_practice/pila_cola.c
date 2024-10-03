@@ -79,7 +79,7 @@ int main(){
             imprimirfila(fila);
         }
     } while(eleccion != 0);
-    printf("---fila final---");
+    printf("---fila final---\n");
 
     imprimirfila(fila);
 

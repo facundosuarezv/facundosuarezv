@@ -131,6 +131,7 @@ int main() {
   }
   printf("Lista desde la pila:\n");
   printList(listaDesdePila);
+  
   // Manejo de la cola
   Node * queueFront = NULL;
   Node * queueRear = NULL;

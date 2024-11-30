@@ -163,15 +163,36 @@ int main() {
     Turno* listaTurnos = NULL;
     Profesional* listaProfesionales = NULL;
     Atencion* listaAtenciones = NULL;
+    int dni, hora, consultorio;
+    char nombre[50], apellido[50], tipo;
+    char continuar = 'S'; 
 
-    // Agregar profesionales
+    // Agregar profesionales para checkear
     agregarProfesional(&listaProfesionales, crearProfesional(111, "Juan", "Perez", "Traumatologia"));
     agregarProfesional(&listaProfesionales, crearProfesional(222, "Ana", "Garcia", "Ortopedia"));
 
-    // Agregar turnos (por simplicidad, se agregan manualmente)
-    agregarTurno(&listaTurnos, crearTurno(12345678, "Facundo", "Lopez", 1300, 111, 'S'));
-    agregarTurno(&listaTurnos, crearTurno(87654321, "Valentina", "Gomez", 1400, 222, 'P'));
-    agregarTurno(&listaTurnos, crearTurno(11223344, "Jose", "Suarez", 1500, 111, 'S'));
+    do {
+        printf("Ingrese el DNI del paciente: ");
+        scanf("%d", &dni);
+        printf("Ingrese el nombre del paciente: ");
+        scanf("%s", nombre);
+        printf("Ingrese el apellido del paciente: ");
+        scanf("%s", apellido);
+        printf("Ingrese la hora del turno (por ejemplo, 1300 para 13:00): ");
+        scanf("%d", &hora);
+        printf("Ingrese el consultorio (por ejemplo, 111 o 222): ");
+        scanf("%d", &consultorio);
+        printf("Ingrese el tipo de turno ('S' para Salud, 'P' para Particular): ");
+        scanf(" %c", &tipo);  
+
+        Turno nuevoTurno = crearTurno(dni, nombre, apellido, hora, consultorio, tipo);
+        agregarTurno(listaTurnos, nuevoTurno);
+
+
+        printf("¿Desea agregar otro turno? (S/N): ");
+        scanf(" %c", &continuar);
+
+    } while (continuar == 'S' || continuar == 's');
 
     procesarTurnos(&agenda, &listaTurnos, listaProfesionales, &listaAtenciones);
 

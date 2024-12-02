@@ -53,6 +53,10 @@ lista* iniciarlista(){
     return lista;
 }
 
+
+
+node* punteroLista = NULL;
+
 node* crearnodo(char* nombre, int nota){
     node* nuevonodo = malloc(sizeof(node));
     strcpy(nuevonodo->alumno.nombre, nombre);

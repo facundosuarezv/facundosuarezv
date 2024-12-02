@@ -47,7 +47,7 @@ Paciente* crearPaciente(int dni, char* nombre, char* apellido) {
     return nuevoPaciente;
 }
 
-Turno* crearTurno(int dni, char* nombre, char* apellido, int horario, int dni_profesional, char tipo_atencion) {
+Turno* crearTurno(Turno algoloquequieras) {
     Turno* nuevoTurno = (Turno*)malloc(sizeof(Turno));
     nuevoTurno->dni = dni;
     strcpy(nuevoTurno->nombre, nombre);
